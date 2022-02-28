@@ -19,6 +19,9 @@ def add_item(db: Session, item: schemas.ItemCreate):
 
 def create_offer(db: Session, offer: schemas.OfferCreate):
     db_offer = models.Offer(**offer.dict())
+    print("+++++++++++++++++++++++++")
+    print(db_offer)
+    print("+++++++++++++++++++++++++")
     db.add(db_offer)
     db.commit()
     db.refresh(db_offer)

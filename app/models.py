@@ -1,3 +1,4 @@
+from typing import List
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
@@ -18,7 +19,8 @@ class Offer(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, index=True)
-    item_id = Column(Integer, ForeignKey("items.id"))   
+    item_id = Column(Integer, ForeignKey("items.id")) 
+    # offer = Column(index=True)  
 
     items = relationship("Item", back_populates="offer")
 

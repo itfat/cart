@@ -1,4 +1,5 @@
 from enum import Enum
+from tkinter.tix import Form
 from typing import List, Optional, Set
 
 from pydantic import BaseModel, Field
@@ -21,8 +22,16 @@ class Item(ItemBase):
 class ItemCreate(ItemBase):
     pass
 
+# class OfferList(str, Enum):
+
+#     buy_one = "buy one get one"
+#     discount_ten = "10 percent discount"
+#     discount_fifty = "50 percent discount"
+
 class OfferBase(BaseModel):
     item_id: int
+    # offer: OfferList = Field(title="Offer")
+    title: str
 
 
 class Offer(OfferBase):
@@ -31,24 +40,10 @@ class Offer(OfferBase):
     class Config:
         orm_mode = True
 
-class OfferList(Enum):
-
-    buy_one = "buy one get one"
-    discount_ten = "10 percent discount"
-    discount_fifty = "50 percent discount"
-
-class OfferCreate(Offer):
-    item_id: int
-    offer: OfferList = Field(title="Offer")
+class OfferCreate(OfferBase):
+    pass
+   
     
-    # name: str
-    # description: Optional[str] = None
-    # price: float
-    # items: List[Item]
-
-
-
-
 
 class AddToCart(BaseModel):
     item_id: int
